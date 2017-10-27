@@ -3,7 +3,7 @@ import sys
 
 def rand_sentence(word_count, words):
     new_sentence = ''
-    for n in range(word_count):
+    for _ in range(word_count):
         new_sentence += random.choice(words)[:-1] + ' '
     return new_sentence[:-1]
 
