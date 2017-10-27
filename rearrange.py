@@ -11,21 +11,11 @@ def random_python_quote():
     scramble_words = []
     if len(words) == 0:
         return 'No words were given'
-    for word in words:
+    while len(words) > 0:
         rand_index = random.randint(0, len(words) - 1)
-        scramble_words.append(words[rand_index])
-    return set(scramble_words)
+        scramble_words.append(words.pop(rand_index))
+    return scramble_words
 
 if __name__ == '__main__':
     quote = random_python_quote()
     print(quote)
-
-# Manually filter out duplicate words (stretch challenge)
-# def random_python_quote():
-#     scramble_words_index = []
-#     if len(words) == 0:
-#         return 'No words were given'
-#     while len(scramble_words_index) == len(words):
-#         rand_index = random.randint(0, len(words) - 1)
-#         scramble_words_index.append(rand_index)
-#     return words[rand_index]
