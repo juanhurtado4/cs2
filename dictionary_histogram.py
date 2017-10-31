@@ -23,8 +23,8 @@ def get_clean_data(raw_data):
 
 def get_histogram(source_text):
     '''
-    Source_text: String
-    Function analyses the frequency of words in Source_text
+    Source_text: List
+    Function counts the frequency of words in Source_text
     Returns key value pair. Key: String, Value: Int
     '''
     histogram = {}
