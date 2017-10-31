@@ -27,7 +27,7 @@ def get_unique_words(histogram):
     Function counts the total unique words in the histogram
     Returns Int
     '''
-    pass
+    return len(histogram)
 
 def get_frequency(word, histogram):
     '''
@@ -59,6 +59,13 @@ def main():
         raw_data = file.read().lower()
 
         clean_data = get_clean_data(raw_data)
+
+        histogram = get_histogram(clean_data)
+
+        histogram_words_count = get_unique_words(histogram)
+
+        # print(histogram_words_count)
+        # print(histogram)
 
 if __name__=='__main__':
     main()
