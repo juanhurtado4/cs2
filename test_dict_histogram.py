@@ -21,5 +21,6 @@ def test_get_clean_data():
 def test_get_histogram():
     clean_data = get_clean_data(raw_data)
     histogram = get_histogram(clean_data)
-    values_type = [True for num in histogram.values() if type(num) == int]
-    assert False not in values_type ## Checks if all values are integers
+    dictionary_types = [True if type(key) == str and type(num) == int else False for key, num in histogram.items()]
+    assert False not in dictionary_types ## Checks if keys and values are the correct type
+    assert len(histogram) == len(dictionary_types)
