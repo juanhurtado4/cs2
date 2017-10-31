@@ -1,10 +1,25 @@
 import re
 import string
 
-# TODO: Finish clean data function
-# TODO: Finish logic for histogram function
-# TODO: Finish unique_words function
-# TODO: Finish frequency function
+def get_clean_data(raw_data):
+    '''
+    raw_data: String
+    Function cleans raw_data from punctuations, numbers, spaces etc, to only leave words
+    Returns list
+    '''
+
+    nonspoken_content_removed = re.sub('\(\w*\)', '', raw_data)
+
+    nonspoken_content_removed = re.sub('\(\w*\s\w*\)', '', nonspoken_content_removed)
+
+    numbers_removed = re.sub('\d\w*', '', nonspoken_content_removed)
+
+    punctuationless_data = ''.join([char for char in numbers_removed
+                                    if char not in string.punctuation])# Removes punctuation from data
+
+    clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
+
+    return clean_data
 
 def get_histogram(source_text):
     '''
@@ -21,7 +36,7 @@ def get_histogram(source_text):
         histogram[word] += 1
     return histogram
 
-def get_unique_words(histogram):
+def get_total_unique_words(histogram):
     '''
     Histogram: Key value pair. Key: String, Value: Int
     Function counts the total unique words in the histogram
@@ -36,22 +51,7 @@ def get_frequency(word, histogram):
     Function computes the number of times that word appears in histogram
     Returns Int
     '''
-    pass
-
-def get_clean_data(raw_data):
-
-    nonspoken_content_removed = re.sub('\(\w*\)', '', raw_data)
-
-    nonspoken_content_removed = re.sub('\(\w*\s\w*\)', '', nonspoken_content_removed)
-
-    numbers_removed = re.sub('\d\w*', '', nonspoken_content_removed)
-
-    punctuationless_data = ''.join([char for char in numbers_removed
-                                    if char not in string.punctuation])# Removes punctuation from data
-
-    clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
-
-    return clean_data
+    return histogram[word]
 
 def main():
     with open('source_text.txt') as file:
@@ -62,10 +62,7 @@ def main():
 
         histogram = get_histogram(clean_data)
 
-        histogram_words_count = get_unique_words(histogram)
-
-        # print(histogram_words_count)
-        # print(histogram)
+        histogram_words_count = get_total_unique_words(histogram)
 
 if __name__=='__main__':
     main()
