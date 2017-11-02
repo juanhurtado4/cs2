@@ -33,8 +33,8 @@ def get_histogram(source_text):
         # if len(word) < 2: # Prevents 1 letter words to be included into histogram
         #     continue
         word_count = source_text.count(word)
-        if [word, word_count] not in histogram:
-            histogram.append([word, word_count])
+        if (word, word_count) not in histogram:
+            histogram.append((word, word_count))
     return histogram
 
 def get_total_unique_words(histogram):
