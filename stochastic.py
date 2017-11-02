@@ -1,4 +1,4 @@
-import random, sys
+import random, sys, re, string
 
 def get_clean_data(raw_data):
     '''
@@ -20,30 +20,50 @@ def get_clean_data(raw_data):
 
     return clean_data
 
-def get_word(raw_text):
+def get_random_word(histogram):
     '''
     Histogram: Key Value pair. Key: String, Value: Int
     Returns a single word at random
     '''
-    # list_of_keys = list(raw_text.keys()) # Turns dictionary into list of keys
+    list_of_words = list(histogram)
+    result_word = ''
+    while len(result_word) <= 0:
+        rand_index = random.randrange(0, len(list_of_words))
+        rand_word = list_of_words[rand_index]
+        if random.random() <= (len(list_of_words) / histogram[rand_word]):
+            result_word = rand_word
 
-    rand_index = random.randrange(0, len(raw_text))
+    return result_word
+    # for key, value in histogram.items():
+    #     if random.random() <= len(histogram) / value:
+    #         result_key = key
+    #         break
 
-    # return  list_of_keys[rand_index]
-    return  raw_text[rand_index]
 
-# print(get_word(parameters))
+
+    # rand_index = random.randrange(0, len(list_of_words))
+    #
+    # return  list_of_words[rand_index]
+
+def test_get_random_word():
+
+
 
 def main():
-    file_name = sys.argv[1]
 
     try:
+        file_name = sys.argv[1]
         with open(file_name) as file:
 
             raw_data = file.read().lower()
 
     except:
         print('Please enter a valid file name')
+        return
+
+    clean_data = get_clean_data(raw_data)
+
+    random_word = get_random_word(clean_data)
 
 if __name__=='__main__':
     main()
