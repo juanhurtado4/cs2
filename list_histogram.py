@@ -8,11 +8,11 @@ def get_clean_data(raw_data):
     Returns list
     '''
 
-    nonspoken_content_removed = re.sub('\(\w*\)', '', raw_data)
+    crowd_reaction_removed = re.sub('\(\w*\)', '', raw_data)
 
-    nonspoken_content_removed = re.sub('\(\w*\s\w*\)', '', nonspoken_content_removed)
+    crowd_reaction_removed = re.sub('\(\w*\s\w*\)', '', crowd_reaction_removed)
 
-    numbers_removed = re.sub('\d\w*', '', nonspoken_content_removed)
+    numbers_removed = re.sub('\d\w*', '', crowd_reaction_removed)
 
     punctuationless_data = ''.join([char for char in numbers_removed
                                     if char not in string.punctuation])# Removes punctuation from data
@@ -30,8 +30,10 @@ def get_histogram(source_text):
     histogram = []
 
     for word in source_text:
-        if word not in histogram:
-            word_count = source_text.count(word)
+        if len(word) < 2:
+            continue
+        word_count = source_text.count(word)
+        if [word, word_count] not in histogram:
             histogram.append([word, word_count])
     return histogram
 
