@@ -1,4 +1,5 @@
 import random, sys, re, string
+from dictionary_histogram import get_histogram
 
 def get_clean_data(raw_data):
     '''
@@ -26,33 +27,45 @@ def get_random_word(histogram):
     Returns a single word at random
     '''
     list_of_words = list(histogram)
+
     result_word = ''
+
     while len(result_word) <= 0:
         rand_index = random.randrange(0, len(list_of_words))
+
         rand_word = list_of_words[rand_index]
-        if random.random() <= (len(list_of_words) / histogram[rand_word]):
+
+        if random.random() <= (histogram[rand_word] / sum(histogram.values())):
+
             result_word = rand_word
 
     return result_word
-    # for key, value in histogram.items():
-    #     if random.random() <= len(histogram) / value:
-    #         result_key = key
-    #         break
 
+def test_get_random_word(repetitions, clean_data, histogram):
+    '''
+    Repetitions: Int
+    Clean_data: List
+    Histogram: Key Value pair. Key: String | Value: Int
+    Function returns histogram of random words returned by (get_random_word) function
+    '''
+    list_of_words = []
 
+    for _ in range(repetitions):
 
-    # rand_index = random.randrange(0, len(list_of_words))
-    #
-    # return  list_of_words[rand_index]
+        rand_word = get_random_word(histogram)
 
-def test_get_random_word():
+        list_of_words.append(rand_word)
 
+    histogram = get_histogram(list_of_words)
 
+    return histogram
 
 def main():
 
+
     try:
         file_name = sys.argv[1]
+
         with open(file_name) as file:
 
             raw_data = file.read().lower()
@@ -63,7 +76,11 @@ def main():
 
     clean_data = get_clean_data(raw_data)
 
-    random_word = get_random_word(clean_data)
+    histogram = get_histogram(clean_data)
+
+    repetitions = int(sys.argv[2])
+
+    print(test_get_random_word(repetitions, clean_data, histogram))
 
 if __name__=='__main__':
     main()
