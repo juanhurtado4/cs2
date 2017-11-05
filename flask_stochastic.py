@@ -3,6 +3,9 @@ import sys
 import re
 import string
 from dictionary_histogram import get_histogram
+from flask import Flask
+
+app = Flask(__name__)
 
 def get_clean_data(raw_data):
     '''
@@ -63,6 +66,7 @@ def test_get_random_word(repetitions, clean_data, histogram):
 
     return histogram
 
+@app.route('/')
 def main():
 
     try:
@@ -82,7 +86,8 @@ def main():
 
     repetitions = int(sys.argv[2])
 
-    print(test_get_random_word(repetitions, clean_data, histogram))
+    # print(test_get_random_word(repetitions, clean_data, histogram))
+    return test_get_random_word(repetitions, clean_data, histogram)
 
 if __name__=='__main__':
     main()
