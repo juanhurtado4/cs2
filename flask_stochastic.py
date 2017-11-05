@@ -3,9 +3,10 @@ import sys
 import re
 import string
 from dictionary_histogram import get_histogram
-from flask import Flask
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 
 def get_clean_data(raw_data):
     '''
@@ -68,13 +69,13 @@ def test_get_random_word(repetitions, clean_data, histogram):
 
 @app.route('/')
 def main():
-
+    ''' Runs testing of get_random function based on command line arguments passed'''
     try:
         file_name = sys.argv[1]
 
         with open(file_name) as file:
 
-            raw_data = file.read().lower()
+            raw_data = file.read().lower() # Makes sure file name is correct
 
     except:
         print('Please enter a valid file name')
@@ -86,8 +87,12 @@ def main():
 
     repetitions = int(sys.argv[2])
 
-    # print(test_get_random_word(repetitions, clean_data, histogram))
-    return test_get_random_word(repetitions, clean_data, histogram)
+    testing_result = test_get_random_word(repetitions, clean_data, histogram)
+
+    # Turns dictionary into string so that it can be displayed in the browser
+    str_conversion = ' '.join('{} {}'.format(key, val) for key, val in sorted(testing_result.items()))
+
+    return str_conversion
 
 if __name__=='__main__':
-    main()
+    app.run()
