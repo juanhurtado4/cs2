@@ -1,5 +1,11 @@
-import random, sys, re, string
+import random
+import sys
+import re
+import string
 from dictionary_histogram import get_histogram
+from flask import Flask
+
+app = Flask(__name__)
 
 def get_clean_data(raw_data):
     '''

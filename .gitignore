@@ -133,3 +133,5 @@ venv.bak/
 
 # End of https://www.gitignore.io/api/macos,python
 notes.md
+test_ven/
+flask_example.py
