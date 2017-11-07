@@ -90,7 +90,7 @@ def main():
     testing_result = test_get_random_word(repetitions, clean_data, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
-    str_conversion = ' '.join('{} {}'.format(key, val) for key, val in sorted(testing_result.items()))
+    str_conversion = ' '.join(word for word in testing_result)
 
     return str_conversion
 
