@@ -71,9 +71,10 @@ def test_get_random_word(repetitions, clean_data, histogram):
 def main():
     ''' Runs testing of get_random function based on command line arguments passed'''
     try:
-        file_name = sys.argv[1]
+        # file_name = sys.argv[1]
 
-        with open(file_name) as file:
+        # with open(file_name) as file:
+        with open('obama_speech.txt') as file:
 
             raw_data = file.read().lower() # Makes sure file name is correct
 
@@ -85,9 +86,11 @@ def main():
 
     histogram = get_histogram(clean_data)
 
-    repetitions = int(sys.argv[2])
+    # repetitions = int(sys.argv[2])
 
-    testing_result = test_get_random_word(repetitions, clean_data, histogram)
+    # testing_result = test_get_random_word(repetitions, clean_data, histogram)
+
+    testing_result = test_get_random_word(10, clean_data, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
     str_conversion = ' '.join(word for word in testing_result)
