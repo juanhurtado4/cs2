@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <style>
+            textarea {
+                margin: 10px 0;
+                width: 540px;
+                height: 120px;
+            }
+            form {
+                background-color: #eee;
+                padding: 20px;
+                margin: 0 auto;
+                width: 540px;
+                font: 16px sans-serif;
+                border-radius: 10px;
+            }
+      </style>
+    </head>
+    <body>
+        <form method="POST">
+            <label>Sentence word length:</label>
+            <input type="text" name="sentence_length" value="0"/>
+            <textarea name="text" >{0}</textarea>
+            <input type="submit" value="Generate New Sentence" />
+        </form>
+    </body>
+</html>
