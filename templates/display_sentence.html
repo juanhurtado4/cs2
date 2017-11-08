@@ -1,8 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="POST" action='/'>
-    <label>Sentence word length:</label>
-    <input type="text" name="sentence_length" value="0"/>
-    <input type="submit" value="Generate New Sentence" />
-</form>
+<b>Obama:</b><i>"{{rand_sentence}}"</i>
 {% endblock %}

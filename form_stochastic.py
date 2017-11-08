@@ -93,10 +93,10 @@ def main():
     # Turns dictionary into string so that it can be displayed in the browser
         rand_sentence = ' '.join(word for word in testing_result)
 
-        return '<h1>{rand_sentence}</h1>'.format(rand_sentence=rand_sentence)
+        return '<b>Obama:</b><i>"{rand_sentence}"</i>'.format(rand_sentence=rand_sentence)
 
     else:
-        return render_template('display_sentence.html')
+        return render_template('show_form.html')
 
 if __name__=='__main__':
     app.run()
