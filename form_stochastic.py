@@ -1,9 +1,9 @@
+from dictionary_histogram import get_histogram
+from flask import Flask, request, render_template, redirect
 import random
 import sys
 import re
 import string
-from dictionary_histogram import get_histogram
-from flask import Flask, request, render_template, redirect
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -91,9 +91,12 @@ def main():
         testing_result = test_get_random_word(repetitions, clean_data, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
-        str_conversion = ' '.join(word for word in testing_result)
+        rand_sentence = ' '.join(word for word in testing_result)
 
-        return str_conversion
+        return '<h1>{rand_sentence}</h1>'.format(rand_sentence=rand_sentence)
+
+    else:
+        return render_template('display_sentence.html')
 
 if __name__=='__main__':
     app.run()

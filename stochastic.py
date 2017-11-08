@@ -73,8 +73,9 @@ def main():
             raw_data = file.read().lower()
 
     except:
-        print('Please enter a valid file name')
-        return
+        # print('Please enter a valid file name')
+        return 'Please enter a valid file name'
+        # return
 
     clean_data = get_clean_data(raw_data)
 
@@ -82,7 +83,9 @@ def main():
 
     repetitions = int(sys.argv[2])
 
-    print(test_get_random_word(repetitions, clean_data, histogram))
+    # print(test_get_random_word(repetitions, clean_data, histogram))
+    return test_get_random_word(repetitions, clean_data, histogram)
 
 if __name__=='__main__':
-    main()
+    # main()
+    print(main())
