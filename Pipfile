@@ -1,13 +1,9 @@
 [[source]]
-url = "https://pure-hollows-66644.herokuapp.com/"
 verify_ssl = true
 
 [packages]
-dj-database-url = "*"
-django = "*"
 gunicorn = "*"
-psycopg2 = "*"
-whitenoise = "*"
+
 
 [requires]
 python_version = "3.6"
