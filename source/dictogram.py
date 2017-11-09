@@ -4,10 +4,10 @@ from __future__ import division, print_function  # Python 2 and 3 compatibility
 
 
 class Dictogram(dict):
-    """Dictogram is a histogram implemented as a subclass of the dict type."""
+    '''Dictogram is a histogram implemented as a subclass of the dict type.'''
 
     def __init__(self, word_list=None):
-        """Initialize this histogram as a new dict and count given words."""
+        '''Initialize this histogram as a new dict and count given words.'''
         super(Dictogram, self).__init__()  # Initialize this as a new dict
         # Add properties to track useful word counts for this histogram
         self.types = 0  # Count of distinct word types in this histogram
@@ -22,13 +22,20 @@ class Dictogram(dict):
 
     # DID NOT IMPLEMENT FUNCTION
     # def add_count(self, word):
-    #     """Increase frequency count of given word by given count amount."""
+    #     '''Increase frequency count of given word by given count amount.'''
     #     pass
 
     def frequency(self, word):
-        """Return frequency count of given word, or 0 if word is not found."""
-        return self[word]
+        '''
+        Word: String
+        Computes frequency count of given word, or 0 if word is not found
+        Returns Int
+        '''
+        if word in self:
 
+            return self[word]
+
+        return 0
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))

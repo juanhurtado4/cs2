@@ -1,12 +1,32 @@
-from dictionary_histogram import get_histogram, get_clean_data
-from flask import Flask, request, render_template, redirect
 import random
 import sys
 import re
 import string
+from dictionary_histogram import get_histogram
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
+
+def get_clean_data(raw_data):
+    '''
+    raw_data: String
+    Function cleans raw_data from punctuations, numbers, spaces etc, to only leave words
+    Returns list
+    '''
+
+    crowd_reaction_removed = re.sub('\(\w*\)', '', raw_data)
+
+    crowd_reaction_removed = re.sub('\(\w*\s\w*\)', '', crowd_reaction_removed)
+
+    numbers_removed = re.sub('\d\w*', '', crowd_reaction_removed)
+
+    punctuationless_data = ''.join([char for char in numbers_removed
+                                    if char not in string.punctuation])# Removes punctuation from data
+
+    clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
+
+    return clean_data
 
 def get_random_word(histogram):
     '''
@@ -18,7 +38,6 @@ def get_random_word(histogram):
     result_word = ''
 
     while len(result_word) <= 0:
-
         rand_index = random.randrange(0, len(list_of_words))
 
         rand_word = list_of_words[rand_index]
@@ -29,9 +48,10 @@ def get_random_word(histogram):
 
     return result_word
 
-def test_get_random_word(repetitions, histogram):
+def test_get_random_word(repetitions, clean_data, histogram):
     '''
     Repetitions: Int
+    Clean_data: List
     Histogram: Key Value pair. Key: String | Value: Int
     Function returns histogram of random words returned by (get_random_word) function
     '''
@@ -47,28 +67,13 @@ def test_get_random_word(repetitions, histogram):
 
     return histogram
 
-def sentence_generator(num_words_in_sentence, histogram):
-    '''
-    Num_words_in_sentence: Int
-    Histogram: Key Value pair. Key: String | Value: Int
-    Function generates a sentence from a source text
-    Returns a string
-    '''
-    sentence = ''
-
-    for _ in range(num_words_in_sentence):
-
-        rand_word = get_random_word(histogram)
-
-        sentence += rand_word + ' '
-
-    return sentence.strip().capitalize()
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def main():
     ''' Runs testing of get_random function based on command line arguments passed'''
     try:
+        # file_name = sys.argv[1]
 
+        # with open(file_name) as file:
         with open('obama_speech.txt') as file:
 
             raw_data = file.read().lower() # Makes sure file name is correct
@@ -77,23 +82,20 @@ def main():
         print('Please enter a valid file name')
         return
 
-    if request.method == 'POST':
+    clean_data = get_clean_data(raw_data)
 
-        clean_data = get_clean_data(raw_data)
+    histogram = get_histogram(clean_data)
 
-        histogram = get_histogram(clean_data)
+    # repetitions = int(sys.argv[2])
 
-        sentence_length = int(request.form['sentence_length'])
+    # testing_result = test_get_random_word(repetitions, clean_data, histogram)
 
-        # test_result = test_get_random_word(sentence_length, histogram)
+    testing_result = test_get_random_word(10, clean_data, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
-        rand_sentence = sentence_generator(sentence_length, histogram)
+    str_conversion = ' '.join(word for word in testing_result)
 
-        return render_template('display_sentence.html',
-                                rand_sentence=rand_sentence)
-    else:
-        return render_template('show_form.html')
+    return str_conversion
 
 if __name__=='__main__':
     app.run()
