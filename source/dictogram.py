@@ -14,16 +14,20 @@ class Dictogram(dict):
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
         if word_list is not None:
+            self.tokens = len(word_list)
             for word in word_list:
-                self.add_count(word)
+                if word not in self:
+                    self[word] = word_list.count(word)
+            self.types = len(self)
 
-    def add_count(self, word, count=1):
-        """Increase frequency count of given word by given count amount."""
-        # TODO: Increase word frequency by count
+    # DID NOT IMPLEMENT FUNCTION
+    # def add_count(self, word):
+    #     """Increase frequency count of given word by given count amount."""
+    #     pass
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
-        # TODO: Retrieve word frequency count
+        return self[word]
 
 
 def print_histogram(word_list):
