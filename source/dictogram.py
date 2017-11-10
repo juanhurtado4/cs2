@@ -13,17 +13,29 @@ class Dictogram(dict):
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
+        # if word_list is not None:
+        #     self.tokens = len(word_list)
+        #     for word in word_list:
+        #         if word not in self:
+        #             self[word] = word_list.count(word)
+        #     self.types = len(self)
+
         if word_list is not None:
+
             self.tokens = len(word_list)
+
             for word in word_list:
-                if word not in self:
-                    self[word] = word_list.count(word)
+
+                self.add_count(word)
+
             self.types = len(self)
 
-    # DID NOT IMPLEMENT FUNCTION
-    # def add_count(self, word):
-    #     '''Increase frequency count of given word by given count amount.'''
-    #     pass
+    def add_count(self, word):
+        '''Increase frequency count of given word by given count amount.'''
+        if word not in self:
+            self[word] = 1
+
+        self[word] += 1
 
     def frequency(self, word):
         '''

@@ -60,7 +60,7 @@ def get_frequency(word, histogram):
     return histogram[word_index][1]
 
 def main():
-    with open('source_text.txt') as file:
+    with open('one_fish_text.txt') as file:
 
         raw_data = file.read().lower()
 
@@ -69,6 +69,8 @@ def main():
         histogram = get_histogram(clean_data)
 
         histogram_words_count = get_total_unique_words(histogram)
+
+        print(histogram)
 
 if __name__=='__main__':
     main()
