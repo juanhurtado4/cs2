@@ -1,3 +1,4 @@
+# TODO: Fix get histogram logic
 class Dictogram(dict):
     '''Dictogram is a histogram implemented as a subclass of the dict type.'''
 
@@ -8,7 +9,7 @@ class Dictogram(dict):
         self.types = 0  # Count of distinct word types in this histogram
 
         self.tokens = 0  # Total count of all word tokens in this histogram
-        
+
         # Count words in given list, if any
         # if word_list is not None:
         #     self.tokens = len(word_list)
@@ -17,7 +18,7 @@ class Dictogram(dict):
         #             self[word] = word_list.count(word)
         #     self.types = len(self)
 
-        self.histogram = {}
+        # self.histogram = {}
 
         if word_list is not None:
 
@@ -25,7 +26,7 @@ class Dictogram(dict):
 
             self.get_histogram(word_list)
 
-            self.types = len(self.histogram)
+            self.types = len(self)
 
     def add_count(self, histogram, word):
         '''Increase frequency count of given word by given count amount.'''
@@ -36,13 +37,30 @@ class Dictogram(dict):
 
         return histogram
 
-    def get_histogram():
+    def get_histogram(self, word_list):
 
-            for word in word_list:
+            for index, word in enumerate(word_list):
+                try:
+                    next_word = word_list[index + 1]
+                except:
+                    break
 
-                self.add_count(word)
+                if word not in self:
 
+                    self[word] = {next_word: 1}
 
+                else:
+                    # {
+                        # 'fish': {'one': 1, 'red: 2'},
+                        # 'red': {'fish': 1, 'one': 2}
+                    # }
+
+                    if next_word not in self[word]:
+                        self[word].update({next_word: 1})
+                    else:
+                         self[word][next_word] += 1
+
+                # self[word][] = {word_list[index + 1]: 1}
 
     def frequency(self, word):
         '''
@@ -55,3 +73,26 @@ class Dictogram(dict):
             return self[word]
 
         return 0
+
+
+def main():
+
+    # with open('one_fish_text.txt') as file:
+    with open('testing_markov.text') as file:
+
+        raw_data = file.read().lower()
+
+    l = raw_data.strip().split(' ')
+    test = Dictogram(l)
+    print(test)
+
+        # clean_data = get_clean_data(raw_data)
+
+        # histogram = get_histogram(clean_data)
+
+        # histogram_words_count = get_total_unique_words(histogram)
+
+        # print(histogram)
+
+if __name__=='__main__':
+    main()
