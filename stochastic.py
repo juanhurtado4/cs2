@@ -29,6 +29,26 @@ def get_random_word(histogram):
     Histogram: Key Value pair. Key: String, Value: Int
     Returns a single word at random
     '''
+
+    list_of_words = list(histogram)
+
+    rand_num = random.random()
+
+    cummulitive_wght = 0
+
+    for key, value in histogram.items():
+
+        word_likelyhood_percent = value / sum(histogram.values())
+
+        cummulitive_wght += word_likelyhood_percent
+
+        if rand_num <= cummulitive_wght:
+
+            random_word = key
+            break
+
+    return random_word
+'''
     list_of_words = list(histogram)
 
     result_word = ''
@@ -43,6 +63,7 @@ def get_random_word(histogram):
             result_word = rand_word
 
     return result_word
+'''
 
 def test_get_random_word(repetitions, clean_data, histogram):
     '''
