@@ -13,21 +13,40 @@ def get_random_word(histogram):
     Histogram: Key Value pair. Key: String, Value: Int
     Returns a single word at random
     '''
-    list_of_words = list(histogram)
 
-    result_word = ''
+    rand_num = random.random()
 
-    while len(result_word) <= 0:
+    cummulitive_wght = 0
 
-        rand_index = random.randrange(0, len(list_of_words))
+    for key, value in histogram.items():
 
-        rand_word = list_of_words[rand_index]
+        word_likelyhood_percent = value / sum(histogram.values())
 
-        if random.random() <= (histogram[rand_word] / sum(histogram.values())):
+        cummulitive_wght += word_likelyhood_percent
 
-            result_word = rand_word
+        if rand_num <= cummulitive_wght:
+            random_word = key
+            break
 
-    return result_word
+
+
+    return random_word
+
+    # list_of_words = list(histogram)
+    #
+    # result_word = ''
+    #
+    # while len(result_word) <= 0:
+    #
+    #     rand_index = random.randrange(0, len(list_of_words))
+    #
+    #     rand_word = list_of_words[rand_index]
+    #
+    #     if random.random() <= (histogram[rand_word] / sum(histogram.values())):
+    #
+    #         result_word = rand_word
+    #
+    # return result_word
 
 def test_get_random_word(repetitions, histogram):
     '''
@@ -56,13 +75,31 @@ def sentence_generator(num_words_in_sentence, histogram):
     '''
     sentence = ''
 
-    for _ in range(num_words_in_sentence):
+    counter = 0
 
-        rand_word = get_random_word(histogram)
+    list_of_words = list(histogram)
+
+    starting_word = random.choice(list_of_words)
+
+    while counter != num_words_in_sentence:
+
+        rand_word = get_random_word(histogram[starting_word])
 
         sentence += rand_word + ' '
 
+        starting_word = rand_word
+
+        counter += 1
+
     return sentence.strip().capitalize()
+    # sentence = ''
+    # for _ in range(num_words_in_sentence):
+    #
+    #     rand_word = get_random_word(histogram)
+    #
+    #     sentence += rand_word + ' '
+    #
+    # return sentence.strip().capitalize()
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
