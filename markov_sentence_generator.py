@@ -140,3 +140,55 @@ if __name__=='__main__':
 
     # histogram = {'one': 1, 'fish': 4, 'two': 1, 'red': 1, 'blue': 1}
     # histogram = {'one': {'fish': 1}, 'fish': {'two': 1, 'red': 1, 'blue': 1}, 'two': {'fish': 1}, 'red': {'fish': 1}, 'blue': {'fish': 1}}
+
+'''
+# -----------------------------------------
+
+# Final format of how we want our histogram to be modeled
+# Follow this format
+{
+    'one': {'fish': 1},
+    'fish': {'blue': 1, 'red': 1, 'two': 1},
+    'blue': {'fish': 1},
+    'two': {'fish': 1},
+    'red': {'fish': 1}
+}
+
+
+# List of words
+['one', 'fish', 'blue', 'fish', 'red', 'fish', 'two', 'fish']
+
+# Step 1) Get a word
+# Step 2) Get the word that comes after
+# Step 3) Store word as a key in dictionary
+# Step 4) Store the word that comes after as a VALUE
+# Step 5) If word that comes after already in nested dictionary increment by 1
+
+def get_histogram(list_of_words):
+    #Converts a list of words into a markov chain
+
+    histogram = {}
+    # Step 1
+    for index, word in enumerate(list_of_words): # enumerate allows you to iterate through index AND value
+        # index: 0
+        # word: one
+
+        # Step 2
+        word_that_comes_after = list_of_words[index + 1] # fish
+
+        # step 3
+        if word_that_comes_after not in histogram[word]:
+
+            # step 4
+            histogram[word] = {word_that_comes_after: 1}
+
+        else:
+            # step 5
+            histogram[word][word_that_comes_after] += 1
+
+histogram[word] >> {'fish': 1}
+
+histogram[word][word_that_comes_after] >> 1
+
+'one': {'fish': 1}
+'''

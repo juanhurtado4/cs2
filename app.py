@@ -1,9 +1,10 @@
-from dictionary_histogram import get_histogram, get_clean_data
+from markov_sentence_generator import get_histogram, get_clean_data
 from flask import Flask, request, render_template, redirect
 import random
 import sys
 import re
 import string
+import pdb
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
