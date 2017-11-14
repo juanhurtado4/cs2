@@ -130,7 +130,7 @@ def get_histogram(word_list):
     return result
 
 if __name__=='__main__':
-    with open('testing_markov.text') as file:
+    with open('obama_speech.txt') as file:
 
         raw_data = file.read().lower()
 
