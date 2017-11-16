@@ -48,7 +48,6 @@ class Dictogram(dict):
             return self[word]
 
         return 0
-
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
     # Create a dictogram and display its contents

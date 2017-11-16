@@ -14,7 +14,6 @@ class Listogram(list):
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
         if word_list is not None:
-
             self.tokens = len(word_list)
 
             for word in word_list:
@@ -42,7 +41,6 @@ class Listogram(list):
             if word in element:
                 return True
         return False
-
     def _index(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
@@ -50,7 +48,6 @@ class Listogram(list):
             if target in element:
                 return index
         return None
-
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
