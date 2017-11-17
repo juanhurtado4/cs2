@@ -96,8 +96,12 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-
-
+        current_node = self.head
+        result = None
+        while current_node.data != quality:
+            current_node = current_node.next
+        return current_node.data
+    
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
