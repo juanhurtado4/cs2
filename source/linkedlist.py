@@ -1,5 +1,5 @@
 #!python
-
+import pdb
 
 class Node(object):
 
@@ -42,6 +42,7 @@ class LinkedList(object):
         node = self.head  # O(1) time to assign new variable
         # Loop until node is None, which is one node too far past tail
         while node is not None:  # Always n iterations because no early return
+            # pdb.set_trace()
             items.append(node.data)  # O(1) time (on average) to append to list
             # Skip to next node to advance forward in linked list
             node = node.next  # O(1) time to reassign variable
@@ -98,17 +99,14 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-        if self.is_empty:
-            return None
+        # pdb.set_trace()
         current_node = self.head
-        # result = None
-        linked_list_length = self.length()
 
         while current_node.data != quality:
-            if current_node == None:
-                return None
             current_node = current_node.next
-
+            if current_node is None:
+                # raise ValueError('Item not found: {}'.format(quality))
+                return None
         return current_node.data
 
     def delete(self, item):
@@ -119,21 +117,35 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        current_node = self.head
-        if self.find(item) == None:
+        if self.is_empty():
             raise ValueError('Item not found: {}'.format(item))
+
+        if self.length() == 1:
+            self.head = None
+            self.tail = None
+            return
+
+        current_node = self.head
 
         while current_node.data != item:
             previous_node = current_node
             current_node = current_node.next
-        try:
-            previous_node.next = current_node.next
-        except:
-            if self.head.next == None:
-                self.head = None
-                self.tail = None
-            else:
-                self.head = self.head.next
+
+            if current_node is None:
+                raise ValueError('Item not found: {}'.format(item))
+        
+        if current_node == self.head:
+            self.head = current_node.next
+            return
+
+        if current_node == self.tail:
+            self.tail = previous_node
+
+            previous_node.next = None
+            return
+
+        previous_node.next = current_node.next
+
 
 
 
@@ -167,4 +179,12 @@ def test_linked_list():
 
 
 if __name__ == '__main__':
-    test_linked_list()
+    # test_linked_list()
+    ll = LinkedList()
+
+    ll.append('one')
+
+    ll.append('two')
+
+    print(ll.items())
+    print(ll.find('one'))
