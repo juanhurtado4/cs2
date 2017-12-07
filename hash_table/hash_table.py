@@ -73,11 +73,16 @@ class HashTable(object):
         # Hint: raise KeyError('Key not found: {}'.format(key))
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
-        if bucket.is_empty:
+        if bucket.is_empty():
+            # import pdb; pdb.set_trace()
             raise KeyError('Key not found: {}'.format(key))
-        for pair in bucket:
-            if pair[0] == key:
-                return pair[1]
+        
+        bucket_items = bucket.items()
+        for item in bucket_items:
+            if key in item:
+                return item[1]
+
+        raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
