@@ -62,6 +62,14 @@ class HashTable(object):
         Answer: O(n) Because finding bucket index is constant time and then iterate through that bucket which is O(n). In addition, we save time because we can find the location using bucket_index func"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
+        bucket_index = self.index_of_bucket(key)
+        bucket = self.buckets[bucket_index]
+        bucket_items = bucket.items()
+        for item in bucket_items:
+            if key in item:
+                return True
+        
+        return False
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
