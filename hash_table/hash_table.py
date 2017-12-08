@@ -54,6 +54,10 @@ class HashTable(object):
         # TODO: Count number of key-value entries in each bucket
         # TODO: Call items()
         # TODO: Count items
+        buckets_length = 0
+        for bucket in self.buckets:
+            buckets_length += len(bucket.items())
+        return buckets_length
 
 
     def contains(self, key):
