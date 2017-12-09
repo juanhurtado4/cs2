@@ -23,13 +23,16 @@ class HashTable(object):
         return hash(key) % len(self.buckets)
 
     def keys(self):
-        """Return a list of all keys in this hash table.
-        TODO: Running time: O(n^2) Why and under what conditions?"""
+        """
+        Return a list of all keys in this hash table.
+        Running time: O(n^2)
+        """
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
             for key, value in bucket.items():
                 all_keys.append(key)
+
         return all_keys
 
     def values(self):
@@ -48,8 +51,10 @@ class HashTable(object):
         
 
     def items(self):
-        """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """
+        Return a list of all items (key-value pairs) in this hash table.
+        Running time: O(n)
+        """
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -57,13 +62,10 @@ class HashTable(object):
         return all_items
 
     def length(self):
-        """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
-        # TODO: Call items()
-        # TODO: Count items
-
+        """
+        Return the number of key-value entries by traversing its buckets.
+        Running time: O(n)
+        """
         buckets_length = 0
         for bucket in self.buckets:
             buckets_length += len(bucket.items())
@@ -72,12 +74,10 @@ class HashTable(object):
 
 
     def contains(self, key):
-        """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?: 
-        Answer: O(n) Because finding bucket index is constant time and then iterate through that bucket which is O(n). In addition, we save time because we can find the location using bucket_index func"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-
+        """
+        Return True if this hash table contains the given key, or False.
+        Running time: O(n)
+        """
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
         bucket_items = bucket.items()
@@ -89,17 +89,14 @@ class HashTable(object):
         return False
 
     def get(self, key):
-        """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs O(1)
-        # TODO: Check if key-value entry exists in bucket O(n)
-        # TODO: If found, return value associated with given key
-        # TODO: Otherwise, raise error to tell user get failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        """
+        Return the value associated with the given key, or raise KeyError.
+        Running time: O(n)
+        """
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
         if bucket.is_empty():
-            # import pdb; pdb.set_trace()
+
             raise KeyError('Key not found: {}'.format(key))
         
         bucket_items = bucket.items()
@@ -110,15 +107,13 @@ class HashTable(object):
         raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
-        """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs O(1)
-        # TODO: Check if key-value entry exists in bucket O(n)
-        # TODO: If found, update value associated with given key
-        # TODO: Otherwise, insert given key-value entry into bucket
+        """
+        Insert or update the given key with its associated value.
+        Running time: O(n)
+        """
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
-        # import pdb; pdb.set_trace()
+
         if bucket.is_empty():
             bucket.prepend((key, value))
         else:
@@ -131,8 +126,10 @@ class HashTable(object):
                 bucket.prepend((key, value))
 
     def delete(self, key):
-        """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """
+        Delete the given key from this hash table, or raise KeyError.
+        Running time: O(n)
+        """
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
         bucket_value = self.get(key)
@@ -157,8 +154,7 @@ def test_hash_table():
     print('contains({!r}): {}'.format('X', ht.contains('X')))
     print('length: {}'.format(ht.length()))
 
-    # Enable this after implementing delete method
-    delete_implemented = False
+    delete_implemented = True
     if delete_implemented:
         print('\nTesting delete:')
         for key in ['I', 'V', 'X']:
