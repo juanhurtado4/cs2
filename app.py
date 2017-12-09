@@ -74,13 +74,14 @@ def sentence_generator(num_words_in_sentence, histogram):
     Function generates a sentence from a source text
     Returns a string
     '''
-    sentence = ''
 
     counter = 0
 
     list_of_words = list(histogram)
 
     starting_word = random.choice(list_of_words)
+    sentence = starting_word + ' '
+    # import pdb; pdb.set_trace()
 
     while counter != num_words_in_sentence:
 
@@ -88,7 +89,7 @@ def sentence_generator(num_words_in_sentence, histogram):
 
         sentence += rand_word + ' '
 
-        starting_word = rand_word
+        starting_word = rand_word.split(' ')[-1]
 
         counter += 1
 
