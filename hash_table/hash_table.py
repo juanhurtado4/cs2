@@ -33,10 +33,19 @@ class HashTable(object):
         return all_keys
 
     def values(self):
-        """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Collect all values in each bucket
+        """
+        Return a list of all values in this hash table.
+        Running time: O(n) 
+        """
+
+        bucket_items = self.items()
+
+        # Iterate through all key, value pairs and only grab the value
+        bucket_values = [ item[1] for item in bucket_items ]
+
+        return bucket_values 
+             
+        
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
@@ -54,9 +63,11 @@ class HashTable(object):
         # TODO: Count number of key-value entries in each bucket
         # TODO: Call items()
         # TODO: Count items
+
         buckets_length = 0
         for bucket in self.buckets:
             buckets_length += len(bucket.items())
+
         return buckets_length
 
 
@@ -66,9 +77,11 @@ class HashTable(object):
         Answer: O(n) Because finding bucket index is constant time and then iterate through that bucket which is O(n). In addition, we save time because we can find the location using bucket_index func"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
+
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
         bucket_items = bucket.items()
+
         for item in bucket_items:
             if key in item:
                 return True
@@ -123,6 +136,10 @@ class HashTable(object):
         # TODO: If found, delete entry associated with given key
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
+        bucket_index = self.index_of_bucket(key)
+        bucket = self.buckets[bucket_index]
+        bucket_value = self.get(key)
+        bucket.delete((key, bucket_value))
 
 
 def test_hash_table():
