@@ -118,24 +118,21 @@ class HashTable(object):
         # TODO: Otherwise, insert given key-value entry into bucket
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
-        if bucket.is_empty:
+        # import pdb; pdb.set_trace()
+        if bucket.is_empty():
             bucket.prepend((key, value))
         else:
-            bucket_data = bucket.find((key, value))
-            if bucket_data == None:
+            key_exist = self.contains(key)
+            if key_exist:
+                old_value = self.get(key)
+                bucket.delete((key, old_value))
                 bucket.prepend((key, value))
             else:
-                bucket.delete((key, value))
                 bucket.prepend((key, value))
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
         bucket_index = self.index_of_bucket(key)
         bucket = self.buckets[bucket_index]
         bucket_value = self.get(key)
