@@ -1,5 +1,6 @@
 from markov_sentence_generator import get_histogram, get_clean_data
 from flask import Flask, request, render_template, redirect
+from app_helper import get_next_token add_to_sentence
 import random
 import sys
 import re
@@ -70,16 +71,15 @@ def sentence_generator(num_words_in_sentence, histogram):
 
     while counter != num_words_in_sentence:
 
-        rand_word = get_random_word(histogram[starting_word])
+        rand_word = get_random_word(histogram[next_word])
 
-        sentence += rand_word + ' '
+        sentence = add_to_sentence(sentence, rand_word)
 
-        starting_word = rand_word.split(' ')[-1]
+        next_word = get_next_word(rand_word)
 
         counter += 1
 
     return sentence.strip().capitalize()
- 
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
