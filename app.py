@@ -18,7 +18,7 @@ def get_random_word(histogram):
     rand_num = random.random()
 
     cummulitive_wght = 0
-
+    import pdb; pdb.set_trace() # Debugging
     for key, value in histogram.items():
 
         word_likelyhood_percent = value / sum(histogram.values())
@@ -33,21 +33,6 @@ def get_random_word(histogram):
 
     return random_word
 
-    # list_of_words = list(histogram)
-    #
-    # result_word = ''
-    #
-    # while len(result_word) <= 0:
-    #
-    #     rand_index = random.randrange(0, len(list_of_words))
-    #
-    #     rand_word = list_of_words[rand_index]
-    #
-    #     if random.random() <= (histogram[rand_word] / sum(histogram.values())):
-    #
-    #         result_word = rand_word
-    #
-    # return result_word
 
 def test_get_random_word(repetitions, histogram):
     '''
@@ -94,14 +79,7 @@ def sentence_generator(num_words_in_sentence, histogram):
         counter += 1
 
     return sentence.strip().capitalize()
-    # sentence = ''
-    # for _ in range(num_words_in_sentence):
-    #
-    #     rand_word = get_random_word(histogram)
-    #
-    #     sentence += rand_word + ' '
-    #
-    # return sentence.strip().capitalize()
+ 
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
