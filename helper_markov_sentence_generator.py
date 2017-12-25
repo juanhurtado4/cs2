@@ -39,3 +39,26 @@ def get_first_token(sentence):
     for word in sentence.split(' '):
         if len(word) > 0 and ' ' not in word:
             return word
+
+def get_last_token(sentence):
+    sentence = sentence.split(' ')
+
+    for index in range((len(sentence) - 1), -1, -1):
+        if len(sentence[index]) > 0 and ' ' not in sentence[index]:
+            return sentence[index]
+
+
+if __name__ == '__main__':
+    
+    sentence = 'The world is a beautiful place'
+    sentence2 = 'The world is a beautiful place '
+    sentence3 = 'The world is a         '
+
+    def test_get_last_token():
+        assert get_last_token(sentence) == 'place'
+        assert get_last_token(sentence2) != ' '
+        assert get_last_token(sentence2) == 'place'
+        assert get_last_token(sentence3) == 'a'
+        print('Successful')
+        
+    test_get_last_token()
