@@ -1,6 +1,6 @@
 from markov_sentence_generator import get_histogram, get_clean_data
 from flask import Flask, request, render_template, redirect
-from app_helper import get_next_token add_to_sentence
+from app_helper import get_next_token, add_to_sentence
 import random
 import sys
 import re
@@ -19,7 +19,7 @@ def get_random_word(histogram):
     rand_num = random.random()
 
     cummulitive_wght = 0
-    import pdb; pdb.set_trace() # Debugging
+    # import pdb; pdb.set_trace() # Debugging
     for key, value in histogram.items():
 
         word_likelyhood_percent = value / sum(histogram.values())
@@ -61,21 +61,26 @@ def sentence_generator(num_words_in_sentence, histogram):
     Returns a string
     '''
 
+    # TODO: change logic in while loop conditional to 1 less than the num_words_in_sentence
+    # TODO: Before while loop prepend sentence with starting word, then proceed as normal
+    # TODO: once while loop breaks choose one of the ending words
+    # TODO: Add function that checks if the last word is in ending tokens histogram. If so, break out of while loop. If not, get next word. If all words are exhausted force break to ending histogram
+
     counter = 0
 
     list_of_words = list(histogram)
 
-    starting_word = random.choice(list_of_words)
-    sentence = starting_word + ' '
+    next_token = random.choice(list_of_words)
+    sentence = next_token + ' '
     # import pdb; pdb.set_trace()
 
     while counter != num_words_in_sentence:
 
-        rand_word = get_random_word(histogram[next_word])
+        rand_word = get_random_word(histogram[next_token])
 
         sentence = add_to_sentence(sentence, rand_word)
 
-        next_word = get_next_word(rand_word)
+        next_token = get_next_token(rand_word)
 
         counter += 1
 
