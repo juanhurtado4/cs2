@@ -1,10 +1,9 @@
-from helper_markov_sentence_generator import remove_empty_string, get_first_token, get_clean_data_strt_end
+from helper_markov_sentence_generator import remove_empty_string, get_first_token, get_clean_data_strt_end, get_last_token
 import random
 import sys
 import re
 import string
 
-# TODO: Get all starting tokens
 # TODO: Get all ending tokens
 
 
@@ -86,6 +85,12 @@ def get_starting_token_histogram(raw_data):
     starting_tokens = [get_first_token(sentence) for sentence in split_data]
     return set(starting_tokens)
 
+def get_ending_token_histogram(raw_data):
+    split_data = raw_data.split('.')
+    remove_empty_string(split_data)
+    # import pdb; pdb.set_trace()
+    ending_tokens = [get_last_token(sentence) for sentence in split_data]
+    return set(ending_tokens)
 
 def get_histogram(word_list):
     # result = {}
@@ -133,7 +138,7 @@ def get_histogram(word_list):
 
             else:
                  result[word][next_state] += 1
-    print(result)
+    # print(result)
     return result
 
 def test_frequency():
@@ -152,15 +157,18 @@ def test_frequency():
     return histogram
 
 if __name__=='__main__':
-    with open('second_order_testing/short_version_obama_speech.txt') as file:
+    # with open('second_order_testing/short_version_obama_speech.txt') as file:
+    with open('obama_speech.txt') as file:
     # with open('one_fish_text.txt') as file:
 
         raw_data = file.read().lower()
 
 
     clean_data = get_clean_data_strt_end(raw_data)
-    starting_tokens = get_starting_token_histogram(clean_data)
-    print(starting_tokens)
+    # starting_tokens = get_starting_token_histogram(clean_data)
+    # print(starting_tokens)
+    ending_tokens = get_ending_token_histogram(clean_data)
+    # print(ending_tokens)
 
     # uncomment when finish debugging
     # clean_data = get_clean_data(raw_data)
