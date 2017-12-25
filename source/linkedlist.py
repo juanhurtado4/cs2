@@ -65,7 +65,7 @@ class LinkedList(object):
             count += 1
             current_node = current_node.next
         return count
-
+ 
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.

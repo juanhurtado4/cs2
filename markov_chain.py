@@ -78,7 +78,7 @@ class Dictogram(dict):
 def main():
 
     # with open('one_fish_text.txt') as file:
-    with open('testing_markov.text') as file:
+    with open('obama_speech.txt') as file:
 
         raw_data = file.read().lower()
 
