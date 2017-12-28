@@ -9,6 +9,7 @@ import string
 import pdb
 
 # TODO: Fix length of sentence in final output
+# TODO: Organize files
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
