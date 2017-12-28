@@ -9,6 +9,9 @@ import pdb
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+# TODO: Fix second order mk chain, sentence length
+
+
 def get_random_word(histogram):
     '''
     Histogram: Key Value pair. Key: String, Value: Int
