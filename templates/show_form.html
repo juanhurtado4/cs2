@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="POST" action='/'>
+<!-- <form method="POST" action='/'>
     <label>Sentence word length:</label>
     <input type="text" name="sentence_length" placeholder="enter a number"/>
     <input type="submit" value="Generate New Sentence" />
+</form> -->
+
+<form method="POST" action='/' class="sub-form">
+    <div class="input-contain">
+
+        <h2 class="info">Obama Sentence Generator</h2>
+        <input type="text" id="sentence_length" name="sentence_length" placeholder="Sentence Length" required maxlength="100" />
+        <div class="submit">
+            <input id="submit" type="submit" value="Generate a random sentence"> 
+        </div>
+    </div>
+    <!--input-contain-->
 </form>
+
 {% endblock %}
