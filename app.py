@@ -11,6 +11,7 @@ app.config['DEBUG'] = True
 
 def get_random_word(histogram):
     '''
+    
     Histogram: Key Value pair. Key: String, Value: Int
     Returns a single word at random
     '''
