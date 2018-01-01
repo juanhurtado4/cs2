@@ -22,6 +22,7 @@ def get_random_word(histogram):
 
     cummulitive_wght = 0
 
+    # pdb.set_trace()
     for key, value in histogram.items():
 
         word_likelyhood_percent = value / sum(histogram.values())
@@ -86,7 +87,7 @@ def sentence_generator(num_words_in_sentence, histogram):
     sentence = starting_word + ' '
     # import pdb; pdb.set_trace()
 
-    while counter != num_words_in_sentence:
+    while counter != (num_words_in_sentence - 1):
 
         rand_word = get_random_word(histogram[starting_word])
 
@@ -112,6 +113,7 @@ def main():
     try:
 
         with open('obama_speech.txt') as file:
+        # with open('short_version_obama_speech.txt') as file:
 
             raw_data = file.read().lower() # Makes sure file name is correct
 
@@ -130,6 +132,7 @@ def main():
         # test_result = test_get_random_word(sentence_length, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
+        # import pdb; pdb.set_trace()
         rand_sentence = sentence_generator(sentence_length, histogram)
 
         return render_template('display_sentence.html',

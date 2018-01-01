@@ -18,8 +18,11 @@ def get_clean_data(raw_data):
 
     punctuationless_data = ''.join([char for char in numbers_removed
                                     if char not in string.punctuation])# Removes punctuation from data
+    # import pdb; pdb.set_trace()
 
-    clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
+    # old
+    # clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
+    clean_data = re.split('\s*', punctuationless_data)  # Splits data based on whitespace
 
     return clean_data
 
@@ -75,52 +78,52 @@ def sentence_generator(num_words_in_sentence, histogram):
     return sentence.strip().capitalize()
 
 def get_histogram(word_list):
-    # result = {}
-    # for index, word in enumerate(word_list):
-    #     try:
-    #         next_word = word_list[index + 1]
-    #     except:
-    #         break
-
-    #     if word not in result:
-
-    #         result[word] = {next_word: 1}
-
-    #     else:
-
-    #         if next_word not in result[word]:
-
-    #             result[word].update({next_word: 1})
-
-    #         else:
-    #              result[word][next_word] += 1
-    # return result
-
-    # def get_histogram(word_list):
-    
-    # Second order markov chain implemented below
     result = {}
     for index, word in enumerate(word_list):
         try:
             next_word = word_list[index + 1]
-            after_next = word_list[index + 2]
-            next_state = next_word + ' ' + after_next
         except:
             break
 
         if word not in result:
 
-            result[word] = {next_state: 1}  # Implement as tuple or string
+            result[word] = {next_word: 1}
 
         else:
 
-            if next_state not in result[word]:
+            if next_word not in result[word]:
 
-                result[word].update({next_state: 1})
+                result[word].update({next_word: 1})
 
             else:
-                 result[word][next_state] += 1
+                 result[word][next_word] += 1
     return result
+
+    # def get_histogram(word_list):
+    
+    # Second order markov chain implemented below
+    # result = {}
+    # for index, word in enumerate(word_list):
+    #     try:
+    #         next_word = word_list[index + 1]
+    #         after_next = word_list[index + 2]
+    #         next_state = next_word + ' ' + after_next
+    #     except:
+    #         break
+
+    #     if word not in result:
+
+    #         result[word] = {next_state: 1}  # Implement as tuple or string
+
+    #     else:
+
+    #         if next_state not in result[word]:
+
+    #             result[word].update({next_state: 1})
+
+    #         else:
+    #              result[word][next_state] += 1
+    # return result
 
 def test_frequency():
     '''
@@ -144,6 +147,7 @@ if __name__=='__main__':
         raw_data = file.read().lower()
 
     clean_data = get_clean_data(raw_data)
+    print(clean_data)
     histogram = get_histogram(clean_data)
     print(histogram)
     # print(sentence_generator(10, histogram))
