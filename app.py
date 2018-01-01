@@ -9,7 +9,7 @@ import pdb
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-# TODO: Fix second order mk chain, sentence length
+# TODO: Fix second order mk chain, sentence length. Look at commit before second order #18d1982d
 
 
 def get_random_word(histogram):
