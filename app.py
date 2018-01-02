@@ -9,7 +9,8 @@ import pdb
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-# TODO: Fix second order mk chain, sentence length. Look at commit before second order #18d1982d
+# TODO: Look into start and end tokens. 
+# NOTE: Second order mk chain is fully functional, but does not produce results like first order.
 
 
 def get_random_word(histogram):
@@ -88,7 +89,7 @@ def sentence_generator(num_words_in_sentence, histogram):
     sentence = starting_word + ' '
     # import pdb; pdb.set_trace()
 
-    while counter != (num_words_in_sentence - 1):
+    while counter <= (num_words_in_sentence - 1):
 
         rand_word = get_random_word(histogram[starting_word])
 
@@ -96,7 +97,7 @@ def sentence_generator(num_words_in_sentence, histogram):
 
         starting_word = rand_word.split(' ')[-1]
 
-        counter += 1
+        counter += 2
 
     return sentence.strip().capitalize()
     # sentence = ''
@@ -128,7 +129,15 @@ def main():
 
         histogram = get_histogram(clean_data)
 
-        sentence_length = int(request.form['sentence_length'])
+        try:
+
+            sentence_length = int(request.form['sentence_length'])
+        except:
+            raise ValueError('please enter a number')
+            return
+        if sentence_length > 25:
+            raise ValueError('Please enter a number less than 25')
+
 
         # test_result = test_get_random_word(sentence_length, histogram)
 
