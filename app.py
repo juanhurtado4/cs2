@@ -127,7 +127,15 @@ def main():
 
         histogram = get_histogram(clean_data)
 
-        sentence_length = int(request.form['sentence_length'])
+        try:
+
+            sentence_length = int(request.form['sentence_length'])
+        except:
+            raise ValueError('please enter a number')
+            return
+        if sentence_length > 25:
+            raise ValueError('Please enter a number less than 25')
+
 
         # test_result = test_get_random_word(sentence_length, histogram)
 
