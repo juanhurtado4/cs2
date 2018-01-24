@@ -1,28 +1,22 @@
-# CS 2: Tweet Generator: Text Processing & Probability
+![Make School Logo](obama_website.png)
+# Obama Sentence Generator 
+#### Final Project from Make School CS 2: Tweet Generator
 
-## Course Schedule
+## Live Site Url:
+https://obama-tweet-generator.herokuapp.com/
 
-**Course Dates:** Monday, October 23 – Friday, December 8, 2017 (6 weeks)
+## Purpose:
+To generate random sentences using over 100k words in speeches given by Obama, utilizing a second order markov chain.
 
-**Class Times:** Tuesday & Thursday 2-4pm or 4–6pm (12 class sessions)
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
 
-
-| Class |         Date          |                  Topics                  |
-|:-----:|:---------------------:|:----------------------------------------:|
-|   1   |  Tuesday, October 24  | [Strings & Random Numbers](Class1.md)    |
-|   2   | Thursday, October 26  | [Histogram Data Structures](Class2.md)   |
-|   3   |  Tuesday, October 31  | [Probability & Sampling](Class3.md)      |
-|   4   | Thursday, November 2  | [Flask Web App Development](Class4.md)   |
-|   5   |  Tuesday, November 7  | [Application Architecture](Class5.md)    |
-|   6   | Thursday, November 9  | [Generating Sentences](Class6.md)        |
-|   7   |  Tuesday, November 14 | [Arrays & Linked Lists](Class7.md)       |
-|   8   | Thursday, November 16 | Hash Tables                 |
-|   9   |  Tuesday, November 28 | Algorithm Analysis          |
-|  10   | Thursday, November 30 | Higher Order Markov Chains |
-|  11   |  Tuesday, December 5  | Regular Expressions        |
-|  12   | Thursday, December 7  | Parsing & Tokenization     |
-
-
-## Repository Setup Instructions
-
-Please follow [these instructions](Setup.md) exactly to set up your fork of this repository.
+## Todo History:
+* Incorporate styling for when the random quote is generated
+* Implement start types
+* Implement end types
+* Invorporate twitter api
