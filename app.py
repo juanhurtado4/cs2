@@ -73,21 +73,19 @@ def test_get_random_word(repetitions, histogram):
 
     return histogram
 
-def sentence_generator(num_words_in_sentence, histogram):
+def sentence_generator(num_words_in_sentence, histogram, starting_word):
     '''
     Num_words_in_sentence: Int
-    Histogram: Key Value pair. Key: String | Value: Int
-    Function generates a sentence from a source text
-    Returns a string
+    Histogram: Dict. Key: String | Value: Int
+    Starting_word: str
+    Returns a string generated from a source text
     '''
 
     counter = 0
 
     list_of_words = list(histogram)
 
-    starting_word = random.choice(list_of_words)
     sentence = starting_word + ' '
-    # import pdb; pdb.set_trace()
 
     while counter <= (num_words_in_sentence - 1):
 
@@ -118,6 +116,10 @@ def main():
         # with open('short_version_obama_speech.txt') as file:
 
             raw_data = file.read().lower() # Makes sure file name is correct
+            # get starting tokens based of regex pattern
+            starting_words = get_start_end_tokens(raw_data, r'\.\s\w+\s')
+            # get ending tokens based of regex pattern
+            ending_words = get_start_end_tokens(raw_data, r'\s\w+\.')
 
     except:
         print('Please enter a valid file name')
@@ -142,23 +144,25 @@ def main():
         # test_result = test_get_random_word(sentence_length, histogram)
 
     # Turns dictionary into string so that it can be displayed in the browser
-        # import pdb; pdb.set_trace()
-        rand_sentence = sentence_generator(sentence_length, histogram)
+        # remove period and spaces in the starting token
+        starting_word = random.choice(starting_words)[1:].strip()
+        end_token = random.choice(ending_words)
 
+        rand_sentence = sentence_generator(sentence_length, histogram, starting_word)
+        rand_sentence += ' ' + end_token
         return render_template('display_sentence.html',
                                 rand_sentence=rand_sentence)
     else:
         return render_template('show_form.html')
 
-def get_beginning_words(text):
-    # regex pattern for words that come after a period
-    after_period = r'\.\s\w+\s'
-    # find all words that come after a space
-    beginning_words = re.findall(after_period, text)
-
-    # remove the dot and space from words
-    clean_words = [word[1:].strip() for word in beginning_words]
-
+def get_start_end_tokens(text, pattern):
+    '''
+    text: str
+    pattern: regular expression
+    returns a list of start or ending token. Start token is found by a token that comes after a period. Ending token is found by a token that comes after a space and has a period at the end
+    '''
+    words = re.findall(pattern, text)
+    clean_words = [word.strip() for word in words]
     return clean_words
 
 if __name__=='__main__':
