@@ -150,5 +150,16 @@ def main():
     else:
         return render_template('show_form.html')
 
+def get_beginning_words(text):
+    # regex pattern for words that come after a period
+    after_period = r'\.\s\w+\s'
+    # find all words that come after a space
+    beginning_words = re.findall(after_period, text)
+
+    # remove the dot and space from words
+    clean_words = [word[1:].strip() for word in beginning_words]
+
+    return clean_words
+
 if __name__=='__main__':
     app.run()
