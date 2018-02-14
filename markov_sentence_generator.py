@@ -125,7 +125,7 @@ def get_histogram(word_list):
     #              result[word][next_state] += 1
     # return result
     result = {}
-    order = 4
+    order = 10
     for index, word in enumerate(word_list):
         try:
             next_state = ' '.join(word_list[index + 1: index + order])
