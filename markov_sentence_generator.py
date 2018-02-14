@@ -16,13 +16,14 @@ def get_clean_data(raw_data):
 
     numbers_removed = re.sub('\d\w*', '', crowd_reaction_removed)
 
-    punctuationless_data = ''.join([char for char in numbers_removed
-                                    if char not in string.punctuation])# Removes punctuation from data
+    # punctuationless_data = ''.join([char for char in numbers_removed
+    #                                 if char not in string.punctuation])# Removes punctuation from data
     # import pdb; pdb.set_trace()
 
     # old
     # clean_data = re.split('\s*', punctuationless_data)[:-1]  # Splits data based on whitespace
-    clean_data = re.split('\s*', punctuationless_data)  # Splits data based on whitespace
+    # clean_data = re.split('\s*', punctuationless_data)  # Splits data based on whitespace
+    clean_data = re.split('\s*', crowd_reaction_removed)  # Splits data based on whitespace
 
     return clean_data
 
@@ -128,7 +129,7 @@ def get_histogram(word_list):
     order = 10
     for index, word in enumerate(word_list):
         try:
-            next_state = ' '.join(word_list[index + 1: index + order])
+            next_state = ' '.join(word_list[index + 1: index + 1 + order])
         except:
             break
 
@@ -169,7 +170,7 @@ if __name__=='__main__':
         raw_data = file.read().lower()
 
     clean_data = get_clean_data(raw_data)
-    print(clean_data)
+    # print(clean_data)
     histogram = get_histogram(clean_data)
     print(histogram)
     # print(sentence_generator(10, histogram))
