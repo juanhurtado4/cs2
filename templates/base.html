@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-      <title>Obama Sentence Generator</title>
-      <style>
-          /* textarea {
+
+<head>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+    <title>Obama Sentence Generator</title>
+    <style>
+        /* textarea {
           margin: 10px 0;
                 width: 500px;
                 height: 120px;
@@ -21,7 +22,9 @@
             b, i {
             font-size: 40px;
             } */
-            html, body {
+        
+        html,
+        body {
             width: 100vw;
             height: 100vh;
             margin: 0;
@@ -29,9 +32,9 @@
             background: url("https://goo.gl/dgGFtx") no-repeat center center;
             background-size: cover;
             font-family: 'Lato', sans-serif;
-            }
-
-            form {
+        }
+        
+        form {
             background: #faf5f3;
             width: 280px;
             margin-top: 50px;
@@ -42,8 +45,9 @@
             left: 50%;
             margin-left: -230px;
             opacity: 0.97;
-            }
-            form h2 {
+        }
+        
+        form h2 {
             text-transform: uppercase;
             text-align: center;
             font-size: 18px;
@@ -51,9 +55,9 @@
             letter-spacing: 0.061em;
             margin-top: 60px;
             margin-bottom: 20px;
-            }
-            
-            form input {
+        }
+        
+        form input {
             width: 100%;
             background: #fff;
             text-align: center;
@@ -72,16 +76,19 @@
             position: relative;
             z-index: 500;
             letter-spacing: 0.06em;
-            }
-            form input:focus {
+        }
+        
+        form input:focus {
             border: 1px solid #ebd7cf;
             outline: none;
             appearance: none;
-            }
-            form input:-webkit-autofill {
+        }
+        
+        form input:-webkit-autofill {
             -webkit-box-shadow: 0 0 0px 1000px white inset;
-            }
-            form input#submit {
+        }
+        
+        form input#submit {
             padding-top: 12px;
             padding-bottom: 12px;
             border: none;
@@ -96,32 +103,55 @@
             color: #fff;
             width: 101%;
             transition: 0.8s all ease;
-            }
-            #submit:hover {
+        }
+        
+        #submit:hover {
             background: #d6673c;
             transform: translateY(1px);
             transition: 0.4s all ease;
-            }
-
-            #sentence_length {
+        }
+        
+        #sentence_length {
             margin-top: 20px;
-            }
-            #quote {
-                color: rgb(15, 50, 75);
-                font-family: menlo;
-            }
-            #obama {
-                color: #d6673c;
-                font-family: melo;
-                font-style: italic;
-                font-size: 1.2em;
-            }
+        }
+        
+        .quote {
+            color: rgb(120, 150, 158);
+            font-family: menlo;
+            line-height: 1.8;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        
+        .quote-block {
+            letter-spacing: 2px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1em 50em 1em 1em;
+            padding: 2.5em;
+            background-color: rgb(15, 50, 75);
+            box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
+            border-radius: 10px;
+        }
+        
+        .signature {
+            color: rgb(250, 50, 46);
+            font-family: melo;
+            font-style: italic;
+            font-size: 1.2em;
+            margin: 1.2em;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        div .signature {
+            text-align: right;
+        }
+    </style>
+</head>
 
-           
-      </style>
-    </head>
-    <body>
-        {% block content %}
-        {% endblock %}
-    </body>
+<body>
+    {% block content %} {% endblock %}
+</body>
+
 </html>
