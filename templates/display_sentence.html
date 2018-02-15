@@ -1,6 +1,7 @@
-{% extends "base.html" %}
-{% block content %}
-<span id="quote">"{{rand_sentence}}"</span>
-<br>
-<span id="obama">- Obama</span></p>
+{% extends "base.html" %} {% block content %}
+<div class="quote-block">
+    <span class="quote">"{{rand_sentence}}"</span>
+    <br>
+    <span class="signature">- Obama</span></p>
+</div>
 {% endblock %}
