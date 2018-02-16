@@ -135,8 +135,9 @@ def main():
 
             sentence_length = int(request.form['sentence_length'])
         except:
-            raise ValueError('please enter a number')
-            return
+            sentence_length = 7
+            # raise ValueError('please enter a number')
+            # return
         if sentence_length > 25:
             raise ValueError('Please enter a number less than 25')
 
