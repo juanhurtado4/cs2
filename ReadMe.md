@@ -1,4 +1,4 @@
-![Make School Logo](obama_website.png)
+![Make School Logo](obama_gif.gif)
 # Obama Sentence Generator 
 #### Final Project from Make School CS 2: Tweet Generator
 
