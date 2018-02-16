@@ -139,13 +139,31 @@
             font-family: melo;
             font-style: italic;
             font-size: 1.2em;
-            margin: 1.2em;
+            margin: auto;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            padding: 1em 0em 1em 0em;
+            align-items: baseline;
         }
         
-        div .signature {
-            text-align: right;
+        .new-quote {
+            font-family: menlo;
+            color: rgb(255, 255, 255);
+            background-color: rgb(59, 91, 113);
+            font-weight: bold;
+            font-size: .8em;
+            border-color: rgb(15, 50, 75);
+            padding: .3em 1.5em .3em 1.5em;
+            border-radius: .5em;
+        }
+        
+        .new-quote:hover {
+            opacity: 0.4;
+            color: black;
+        }
+        
+        #form {
+            opacity: 0;
         }
     </style>
 </head>
