@@ -1,7 +1,14 @@
 {% extends "base.html" %} {% block content %}
+<form id="form" action="/" method="POST">
+</form>
 <div class="quote-block">
-    <span class="quote">"{{rand_sentence}}"</span>
-    <br>
-    <span class="signature">- Obama</span></p>
+
+    <div class="quote">"{{rand_sentence}}"</div>
+
+
+    <div class="signature">
+        <button class="new-quote" form="form">New quote</button> - Obama
+    </div>
+
 </div>
 {% endblock %}
