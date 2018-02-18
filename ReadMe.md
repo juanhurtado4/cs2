@@ -16,7 +16,8 @@ To generate random sentences using over 100k words in speeches given by Obama, u
 5. Submit a pull request :D
 
 ## Todo History:
-* Incorporate styling for when the random quote is generated
+* ~~Incorporate styling for when the random quote is generated~~
 * ~~Implement start types~~
 * ~~Implement end types~~
 * Invorporate twitter api
+* Separate stylesheet into own file
