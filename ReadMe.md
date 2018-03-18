@@ -6,7 +6,7 @@
 https://obama-tweet-generator.herokuapp.com/
 
 ## Purpose:
-To generate random sentences using over 100k words in speeches given by Obama, utilizing an n order markov chain.
+To generate random sentences using over 100k words in speeches given by Barack Obama, utilizing an "nth-order" markov chain.
 
 ## Contributing
 1. Fork it!
