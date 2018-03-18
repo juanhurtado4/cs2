@@ -7,19 +7,22 @@ body {
     background: url("https://goo.gl/dgGFtx") no-repeat center center;
     background-size: cover;
     font-family: 'Lato', sans-serif;
+    display: grid;
+    grid-template-areas: ". . ." ". main ." ". . .";
 }
 
 form {
     background: #faf5f3;
     width: 280px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    position: absolute;
-    z-index: 10;
+    height: 250px;
     padding: 20px 60px 80px;
-    left: 50%;
-    margin-left: -230px;
     opacity: 0.97;
+}
+
+.container {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
 }
 
 form h2 {
