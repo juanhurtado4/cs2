@@ -1,3 +1,10 @@
+:root {
+    --form-bg: #294261;
+    --button-bg: #ec7242;
+    --form-text: white;
+    --button-bg-hov: #A75F41;
+}
+
 html,
 body {
     width: 100vw;
@@ -12,7 +19,7 @@ body {
 }
 
 form {
-    background: #faf5f3;
+    background: var(--form-bg);
     width: 280px;
     height: 250px;
     padding: 20px 60px 80px;
@@ -29,7 +36,7 @@ form h2 {
     text-transform: uppercase;
     text-align: center;
     font-size: 18px;
-    color: #2f1f1e;
+    color: var(--form-text);
     letter-spacing: 0.061em;
     margin-top: 60px;
     margin-bottom: 20px;
@@ -77,14 +84,14 @@ form input#submit {
     letter-spacing: 0.06em;
     text-align: center;
     cursor: pointer;
-    background: #ec7242;
+    background: var(--button-bg);
     color: #fff;
     width: 101%;
     transition: 0.8s all ease;
 }
 
 #submit:hover {
-    background: #d6673c;
+    background: var(--button-bg-hov);
     transform: translateY(1px);
     transition: 0.4s all ease;
 }
