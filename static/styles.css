@@ -1,10 +1,3 @@
-:root {
-    --form-bg: #294261;
-    --button-bg: #ec7242;
-    --form-text: white;
-    --button-bg-hov: #A75F41;
-}
-
 html,
 body {
     width: 100vw;
@@ -14,29 +7,26 @@ body {
     background: url("https://goo.gl/dgGFtx") no-repeat center center;
     background-size: cover;
     font-family: 'Lato', sans-serif;
-    display: grid;
-    grid-template-areas: ". . ." ". main ." ". . .";
 }
 
 form {
-    background: var(--form-bg);
+    background: #faf5f3;
     width: 280px;
-    height: 250px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: absolute;
+    z-index: 10;
     padding: 20px 60px 80px;
+    left: 50%;
+    margin-left: -230px;
     opacity: 0.97;
-}
-
-.container {
-    grid-area: main;
-    display: flex;
-    justify-content: center;
 }
 
 form h2 {
     text-transform: uppercase;
     text-align: center;
     font-size: 18px;
-    color: var(--form-text);
+    color: #2f1f1e;
     letter-spacing: 0.061em;
     margin-top: 60px;
     margin-bottom: 20px;
@@ -84,14 +74,14 @@ form input#submit {
     letter-spacing: 0.06em;
     text-align: center;
     cursor: pointer;
-    background: var(--button-bg);
+    background: #ec7242;
     color: #fff;
     width: 101%;
     transition: 0.8s all ease;
 }
 
 #submit:hover {
-    background: var(--button-bg-hov);
+    background: #d6673c;
     transform: translateY(1px);
     transition: 0.4s all ease;
 }
