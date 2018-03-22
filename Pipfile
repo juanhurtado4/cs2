@@ -1,9 +1,8 @@
-[[source]]
-verify_ssl = true
+
 
 [packages]
 gunicorn = "*"
 
 
 [requires]
-python_version = "3.6.4"
+python_version = "3.6.1"
