@@ -1,9 +1,6 @@
 ![Make School Logo](obama_gif.gif)
-# Obama Sentence Generator 
+# Obama Sentence Generator
 #### Final Project from Make School CS 2: Tweet Generator
-
-## Live Site Url:
-https://obama-tweet-generator.herokuapp.com/
 
 ## Purpose:
 To generate random sentences using over 100k words in speeches given by Obama, utilizing an n order markov chain.
